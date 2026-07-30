@@ -215,6 +215,15 @@ end`
 	validProgram(t, input)
 }
 
+func TestSemanticWhileLoopCondition(t *testing.T) {
+	input := `fn main: int do
+		while 42 do
+			return 0;
+		end
+	end`
+	_ = mustHaveError(t, input)
+}
+
 func TestSemanticGlobalVar(t *testing.T) {
 	input := `var x: int = 42;
 fn main: int do
