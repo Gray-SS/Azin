@@ -61,7 +61,7 @@ func (t *Transpiler) emitStatement(
 		t.emitIf(n)
 
 	case *ast.WhileStmt:
-		t.emitLoop(n)
+		t.emitWhile(n)
 
 	case *ast.StopStmt:
 		t.indentLine()
@@ -172,14 +172,18 @@ func (t *Transpiler) emitIf(
 	t.newline()
 }
 
-func (t *Transpiler) emitLoop(
+func (t *Transpiler) emitWhile(
 	stmt *ast.WhileStmt,
 ) {
 	t.indentLine()
 
-	t.write(
-		"for (;;) {\n",
+	t.write("while (")
+
+	t.emitExpression(
+		stmt.Condition,
 	)
+
+	t.write(") {\n")
 
 	t.emitBlock(
 		stmt.Body,

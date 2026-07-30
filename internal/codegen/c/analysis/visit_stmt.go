@@ -25,7 +25,7 @@ func (a *Analyzer) visitStmt(current string, stmt ast.Stmt) {
 	case *ast.IfStmt:
 		a.visitIf(current, n)
 	case *ast.WhileStmt:
-		a.visitLoop(current, n)
+		a.visitWhile(current, n)
 	case *ast.AssignmentStmt:
 		a.visitAssignment(current, n)
 	case *ast.ExpressionStmt:
