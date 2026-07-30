@@ -408,6 +408,8 @@ func (p *Parser) parseInfix(left ast.Expr, nextPrec int) ast.Expr {
 
 	default:
 		op := p.advance()
+		p.skipNewlines() // Allow newlines between operator and right-hand side
+
 		right := p.parseExpression(nextPrec)
 		return &ast.BinaryExpr{Left: left, Operator: op, Right: right}
 	}
@@ -462,8 +464,11 @@ func (p *Parser) parseStop() ast.Stmt {
 
 func (p *Parser) parseWhile() ast.Stmt {
 	tok := p.advance()
+	p.skipNewlines() // Allow newlines between 'while' and the condition
 
 	condition := p.parseExpression(PrecLowest)
+	p.skipNewlines() // Allow newlines between condition and 'do'
+
 	p.expect(token.KwDo, "after while condition")
 
 	body := p.parseBlock(token.KwEnd)
