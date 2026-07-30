@@ -84,9 +84,9 @@ func _() {
 	_ = x[Error-73]
 }
 
-const _Kind_name = "unknownidentifierinteger_literalstring_literalfloat_literalcharacter_literalkw_fnkw_dokw_varkw_mutkw_returnkw_endkw_charkw_intkw_boolkw_nullkw_unitkw_stringkw_floatkw_ifkw_thenkw_elsekw_structkw_iskw_importkw_loopkw_stopkw_deferkw_enumplusminusstarslashequalequal_equalbangbang_equallessless_equalgreatergreater_equalarrowmodulopipelogical_orlogical_andampersandcarettildeplus_equalminus_equalstar_equalslash_equalmodulo_equalcaret_equalpipe_equalampersand_equalplus_plusminus_minusless_lessgreater_greaterleft_parenright_parenleft_braceright_bracecommasemicoloncolondotleft_bracketright_bracketnewlineeoferror"
+const _Kind_name = "unknownidentifierinteger_literalstring_literalfloat_literalcharacter_literalkw_fnkw_dokw_varkw_mutkw_returnkw_endkw_charkw_intkw_boolkw_nullkw_unitkw_stringkw_floatkw_ifkw_thenkw_elsekw_structkw_iskw_importkw_whilekw_stopkw_deferkw_enumplusminusstarslashequalequal_equalbangbang_equallessless_equalgreatergreater_equalarrowmodulopipelogical_orlogical_andampersandcarettildeplus_equalminus_equalstar_equalslash_equalmodulo_equalcaret_equalpipe_equalampersand_equalplus_plusminus_minusless_lessgreater_greaterleft_parenright_parenleft_braceright_bracecommasemicoloncolondotleft_bracketright_bracketnewlineeoferror"
 
-var _Kind_index = [...]uint16{0, 7, 17, 32, 46, 59, 76, 81, 86, 92, 98, 107, 113, 120, 126, 133, 140, 147, 156, 164, 169, 176, 183, 192, 197, 206, 213, 220, 228, 235, 239, 244, 248, 253, 258, 269, 273, 283, 287, 297, 304, 317, 322, 328, 332, 342, 353, 362, 367, 372, 382, 393, 403, 414, 426, 437, 447, 462, 471, 482, 491, 506, 516, 527, 537, 548, 553, 562, 567, 570, 582, 595, 602, 605, 610}
+var _Kind_index = [...]uint16{0, 7, 17, 32, 46, 59, 76, 81, 86, 92, 98, 107, 113, 120, 126, 133, 140, 147, 156, 164, 169, 176, 183, 192, 197, 206, 214, 221, 229, 236, 240, 245, 249, 254, 259, 270, 274, 284, 288, 298, 305, 318, 323, 329, 333, 343, 354, 363, 368, 373, 383, 394, 404, 415, 427, 438, 448, 463, 472, 483, 492, 507, 517, 528, 538, 549, 554, 563, 568, 571, 583, 596, 603, 606, 611}
 
 func (i Kind) String() string {
 	idx := int(i) - 0
