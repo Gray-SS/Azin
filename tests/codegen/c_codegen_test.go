@@ -272,7 +272,7 @@ fn main: int do
 end
 `,
 			contains: []string{
-				"for (;;)",
+				"while (true)",
 			},
 		},
 	}

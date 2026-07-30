@@ -208,7 +208,7 @@ end`
 
 func TestSemanticLoopBreak(t *testing.T) {
 	input := `fn main: int do
-    loop
+    while true do
         return 0;
     end
 end`
@@ -337,18 +337,18 @@ end`
 	mustNotHaveWarning(t, input)
 }
 
-func TestSemanticUnusedVarInLoop(t *testing.T) {
+func TestSemanticUnusedVarInWhile(t *testing.T) {
 	input := `fn main: int do
-    loop
+    while true do
         var x: int = 42;
     end
 end`
 	mustHaveWarning(t, input, "unused variable: x")
 }
 
-func TestSemanticUsedVarInLoop(t *testing.T) {
+func TestSemanticUsedVarInWhile(t *testing.T) {
 	input := `fn main: int do
-    loop
+    while true do
         var x: int = 42;
         return x;
     end
