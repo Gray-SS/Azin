@@ -328,10 +328,16 @@ type Identifier struct {
 	SemaType *types2.TypeInfo
 }
 
-func (*Identifier) exprNode()                {}
-func (i *Identifier) TokenLiteral() string   { return i.Value }
-func (i *Identifier) Pos() token2.Position   { return i.Token.Position }
-func (i *Identifier) Type() *types2.TypeInfo { return i.SemaType }
+func (*Identifier) exprNode()              {}
+func (i *Identifier) TokenLiteral() string { return i.Value }
+func (i *Identifier) Pos() token2.Position { return i.Token.Position }
+func (i *Identifier) Type() *types2.TypeInfo {
+	if i.SemaType != nil {
+		return i.SemaType
+	}
+
+	return types2.UnknownType()
+}
 func (i *Identifier) Label() string {
 	return i.Value
 }
@@ -436,10 +442,16 @@ type CallExpr struct {
 	SemaReturnType *types2.TypeInfo
 }
 
-func (*CallExpr) exprNode()                {}
-func (c *CallExpr) TokenLiteral() string   { return c.Callee.TokenLiteral() }
-func (c *CallExpr) Pos() token2.Position   { return c.Callee.Pos() }
-func (c *CallExpr) Type() *types2.TypeInfo { return c.SemaReturnType }
+func (*CallExpr) exprNode()              {}
+func (c *CallExpr) TokenLiteral() string { return c.Callee.TokenLiteral() }
+func (c *CallExpr) Pos() token2.Position { return c.Callee.Pos() }
+func (c *CallExpr) Type() *types2.TypeInfo {
+	if c.SemaReturnType != nil {
+		return c.SemaReturnType
+	}
+
+	return types2.UnknownType()
+}
 func (c *CallExpr) Label() string {
 	switch callee := c.Callee.(type) {
 	case *Identifier:
@@ -474,10 +486,15 @@ type BinaryExpr struct {
 	SemaResultType *types2.TypeInfo
 }
 
-func (*BinaryExpr) exprNode()                {}
-func (b *BinaryExpr) TokenLiteral() string   { return b.Operator.Kind.String() }
-func (b *BinaryExpr) Pos() token2.Position   { return b.Left.Pos() }
-func (b *BinaryExpr) Type() *types2.TypeInfo { return b.SemaResultType }
+func (*BinaryExpr) exprNode()              {}
+func (b *BinaryExpr) TokenLiteral() string { return b.Operator.Kind.String() }
+func (b *BinaryExpr) Pos() token2.Position { return b.Left.Pos() }
+func (b *BinaryExpr) Type() *types2.TypeInfo {
+	if b.SemaResultType != nil {
+		return b.SemaResultType
+	}
+	return types2.UnknownType()
+}
 func (b *BinaryExpr) Label() string {
 	return b.Operator.Kind.String()
 }
@@ -496,10 +513,16 @@ type MemberExpr struct {
 	SemaResultType *types2.TypeInfo
 }
 
-func (*MemberExpr) exprNode()                {}
-func (m *MemberExpr) TokenLiteral() string   { return m.Property.TokenLiteral() }
-func (m *MemberExpr) Pos() token2.Position   { return m.Object.Pos() }
-func (m *MemberExpr) Type() *types2.TypeInfo { return m.SemaResultType }
+func (*MemberExpr) exprNode()              {}
+func (m *MemberExpr) TokenLiteral() string { return m.Property.TokenLiteral() }
+func (m *MemberExpr) Pos() token2.Position { return m.Object.Pos() }
+func (m *MemberExpr) Type() *types2.TypeInfo {
+	if m.SemaResultType != nil {
+		return m.SemaResultType
+	}
+
+	return types2.UnknownType()
+}
 func (m *MemberExpr) Label() string {
 	if id, ok := m.Object.(*Identifier); ok {
 		return id.Value + "." + m.Property.Value
