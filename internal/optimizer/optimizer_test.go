@@ -792,7 +792,7 @@ func TestOptimizeStatementsExpressionElimination(t *testing.T) {
 
 func TestOptimizeLoopUnwrapReturn(t *testing.T) {
 	// Use non-pure expression so it's not eliminated
-	loop := &ast.LoopStmt{
+	loop := &ast.WhileStmt{
 		Body: []ast.Stmt{
 			&ast.AssignmentStmt{Left: id("x"), Value: intLit(1)},
 			&ast.ReturnStmt{Value: intLit(0)},
@@ -811,7 +811,7 @@ func TestOptimizeLoopUnwrapReturn(t *testing.T) {
 
 func TestOptimizeLoopUnwrapStop(t *testing.T) {
 	// Use non-pure expression so it's not eliminated
-	loop := &ast.LoopStmt{
+	loop := &ast.WhileStmt{
 		Body: []ast.Stmt{
 			&ast.AssignmentStmt{Left: id("x"), Value: intLit(1)},
 			&ast.StopStmt{},
@@ -830,7 +830,7 @@ func TestOptimizeLoopUnwrapStop(t *testing.T) {
 
 func TestOptimizeLoopNotUnwrapped(t *testing.T) {
 	// Loop without terminal body should not be unwrapped
-	loop := &ast.LoopStmt{
+	loop := &ast.WhileStmt{
 		Body: []ast.Stmt{
 			&ast.ExpressionStmt{Expression: id("x")},
 		},
@@ -840,9 +840,9 @@ func TestOptimizeLoopNotUnwrapped(t *testing.T) {
 	if len(result) != 1 {
 		t.Fatalf("expected 1 stmt (loop kept), got %d", len(result))
 	}
-	_, ok := result[0].(*ast.LoopStmt)
+	_, ok := result[0].(*ast.WhileStmt)
 	if !ok {
-		t.Errorf("expected LoopStmt, got %T", result[0])
+		t.Errorf("expected WhileStmt, got %T", result[0])
 	}
 }
 

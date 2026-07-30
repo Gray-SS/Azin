@@ -148,7 +148,7 @@ func (a *Analyzer) collectTypesFromStmt(stmt ast.Stmt) {
 		a.collectTypesFromStmts(s.Then)
 		a.collectTypesFromStmts(s.Else)
 
-	case *ast.LoopStmt:
+	case *ast.WhileStmt:
 		a.collectTypesFromStmts(s.Body)
 
 	case *ast.ReturnStmt:

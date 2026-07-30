@@ -33,7 +33,7 @@ const (
 	KwStruct  // kw_struct
 	KwIs      // kw_is
 	KwImportC // kw_import
-	KwLoop    // kw_loop
+	KwWhile   // kw_while
 	KwStop    // kw_stop
 	KwDefer   // kw_defer
 	KwEnum    // kw_enum

@@ -225,16 +225,17 @@ func (*IfStmt) Label() string {
 	return "if"
 }
 
-type LoopStmt struct {
-	Token token2.Token // loop
-	Body  []Stmt
+type WhileStmt struct {
+	Token     token2.Token // while
+	Condition Expr
+	Body      []Stmt
 }
 
-func (*LoopStmt) stmtNode()              {}
-func (l *LoopStmt) TokenLiteral() string { return l.Token.Kind.String() }
-func (l *LoopStmt) Pos() token2.Position { return l.Token.Position }
-func (*LoopStmt) Label() string {
-	return "loop"
+func (*WhileStmt) stmtNode()              {}
+func (l *WhileStmt) TokenLiteral() string { return l.Token.Kind.String() }
+func (l *WhileStmt) Pos() token2.Position { return l.Token.Position }
+func (*WhileStmt) Label() string {
+	return "while"
 }
 
 type StopStmt struct {

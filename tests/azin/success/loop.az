@@ -1,5 +1,5 @@
 fn main: int do
-    loop
+    while true do
         stop
     end
 

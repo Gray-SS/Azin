@@ -52,7 +52,7 @@ func (a *Analyzer) walkStmtForCalls(caller string, stmt ast.Stmt) {
 		a.walkExprForCalls(caller, s.Condition)
 		a.walkStmtsForCalls(caller, s.Then)
 		a.walkStmtsForCalls(caller, s.Else)
-	case *ast.LoopStmt:
+	case *ast.WhileStmt:
 		a.walkStmtsForCalls(caller, s.Body)
 	}
 }

@@ -33,7 +33,7 @@ func _() {
 	_ = x[KwStruct-22]
 	_ = x[KwIs-23]
 	_ = x[KwImportC-24]
-	_ = x[KwLoop-25]
+	_ = x[KwWhile-25]
 	_ = x[KwStop-26]
 	_ = x[KwDefer-27]
 	_ = x[KwEnum-28]

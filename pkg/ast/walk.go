@@ -56,7 +56,7 @@ func adjustStmt(stmt Stmt, delta uint32) {
 		for _, bodyStmt := range s.Else {
 			adjustStmt(bodyStmt, delta)
 		}
-	case *LoopStmt:
+	case *WhileStmt:
 		s.Token.Position.Offset += delta
 		for _, bodyStmt := range s.Body {
 			adjustStmt(bodyStmt, delta)

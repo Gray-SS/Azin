@@ -261,7 +261,7 @@ fn foo(x: int) do
 end
 
 fn main: int do
-	loop
+	while true do
 		var mut x: int = 0
         if foo(10) == 0 then	
 			return 0

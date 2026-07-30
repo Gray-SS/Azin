@@ -42,7 +42,7 @@ func (o *Optimizer) optimizeStatement(stmt ast.Stmt) []ast.Stmt {
 	switch n := stmt.(type) {
 	case *ast.IfStmt:
 		return o.optimizeIf(n)
-	case *ast.LoopStmt:
+	case *ast.WhileStmt:
 		return o.optimizeLoop(n)
 	case *ast.ExpressionStmt:
 		return o.optimizeExpressionStmt(n)
@@ -58,7 +58,7 @@ func (o *Optimizer) optimizeStatement(stmt ast.Stmt) []ast.Stmt {
 	return []ast.Stmt{stmt}
 }
 
-func (o *Optimizer) optimizeLoop(n *ast.LoopStmt) []ast.Stmt {
+func (o *Optimizer) optimizeLoop(n *ast.WhileStmt) []ast.Stmt {
 	if len(n.Body) == 0 {
 		return nil
 	}

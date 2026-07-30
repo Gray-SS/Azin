@@ -44,7 +44,7 @@ func (a *Analyzer) pruneBlock(fnName string, stmts []ast.Stmt, usage map[string]
 				continue
 			}
 			out = append(out, stmt)
-		case *ast.LoopStmt:
+		case *ast.WhileStmt:
 			s.Body = a.pruneBlock(fnName, s.Body, usage)
 			out = append(out, stmt)
 		default:

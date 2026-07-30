@@ -105,8 +105,8 @@ func (p *Parser) parseStatement() ast.Stmt {
 		stmt = p.parseIf()
 	case p.check(token.KwImportC):
 		stmt = p.parseImportC()
-	case p.check(token.KwLoop):
-		stmt = p.parseLoop()
+	case p.check(token.KwWhile):
+		stmt = p.parseWhile()
 	case p.check(token.KwStop):
 		stmt = p.parseStop()
 	case p.check(token.KwDefer):
@@ -460,16 +460,20 @@ func (p *Parser) parseStop() ast.Stmt {
 	}
 }
 
-func (p *Parser) parseLoop() ast.Stmt {
+func (p *Parser) parseWhile() ast.Stmt {
 	tok := p.advance()
+
+	condition := p.parseExpression(PrecLowest)
+	p.expect(token.KwDo, "after while condition")
 
 	body := p.parseBlock(token.KwEnd)
 
-	p.expect(token.KwEnd, "to close loop")
+	p.expect(token.KwEnd, "to close while statement")
 
-	return &ast.LoopStmt{
-		Token: tok,
-		Body:  body,
+	return &ast.WhileStmt{
+		Token:     tok,
+		Condition: condition,
+		Body:      body,
 	}
 }
 

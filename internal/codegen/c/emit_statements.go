@@ -60,7 +60,7 @@ func (t *Transpiler) emitStatement(
 	case *ast.IfStmt:
 		t.emitIf(n)
 
-	case *ast.LoopStmt:
+	case *ast.WhileStmt:
 		t.emitLoop(n)
 
 	case *ast.StopStmt:
@@ -173,7 +173,7 @@ func (t *Transpiler) emitIf(
 }
 
 func (t *Transpiler) emitLoop(
-	stmt *ast.LoopStmt,
+	stmt *ast.WhileStmt,
 ) {
 	t.indentLine()
 

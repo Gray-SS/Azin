@@ -97,11 +97,12 @@ func TestIfStmt(t *testing.T) {
 	}
 }
 
-func TestLoopStmt(t *testing.T) {
-	s := &ast.LoopStmt{
-		Token: tok(token.KwLoop, 0, 4),
+func TestWhileStmt(t *testing.T) {
+	s := &ast.WhileStmt{
+		Token:     tok(token.KwWhile, 0, 5),
+		Condition: ident("true"),
 	}
-	if s.Label() != "loop" {
+	if s.Label() != "while" {
 		t.Errorf("Label = %q", s.Label())
 	}
 }

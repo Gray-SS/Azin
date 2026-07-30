@@ -20,7 +20,7 @@ var Keywords = map[string]Kind{
 	"struct":  KwStruct,
 	"is":      KwIs,
 	"importc": KwImportC,
-	"loop":    KwLoop,
+	"while":   KwWhile,
 	"stop":    KwStop,
 	"defer":   KwDefer,
 	"null":    KwNull,

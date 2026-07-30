@@ -26,7 +26,7 @@ func TestKeywordsContainAllRegistered(t *testing.T) {
 		"struct":  tok.KwStruct,
 		"is":      tok.KwIs,
 		"importc": tok.KwImportC,
-		"loop":    tok.KwLoop,
+		"loop":    tok.KwWhile,
 		"stop":    tok.KwStop,
 		"null":    tok.KwNull,
 		"enum":    tok.KwEnum,

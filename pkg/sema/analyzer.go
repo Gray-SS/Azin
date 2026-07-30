@@ -185,7 +185,7 @@ func (a *Analyzer) verifyResolvedCalls(program *ast.Program) {
 				visitStmt(stmt)
 			}
 
-		case *ast.LoopStmt:
+		case *ast.WhileStmt:
 			for _, stmt := range n.Body {
 				visitStmt(stmt)
 			}
@@ -653,7 +653,7 @@ func (a *Analyzer) visitStatement(stmt ast.Stmt) {
 
 		a.popScope()
 
-	case *ast.LoopStmt:
+	case *ast.WhileStmt:
 		a.loopDepth++
 		defer func() { a.loopDepth-- }()
 
@@ -779,7 +779,7 @@ func (a *Analyzer) findReturnExprType(stmt ast.Stmt) *types2.TypeInfo {
 			}
 		}
 
-	case *ast.LoopStmt:
+	case *ast.WhileStmt:
 		for _, s := range n.Body {
 			if t := a.findReturnExprType(s); t != nil {
 				return t
@@ -810,7 +810,7 @@ func (a *Analyzer) stmtAllPathsReturn(stmt ast.Stmt) bool {
 		}
 		return a.blockAllPathsReturn(n.Then) && a.blockAllPathsReturn(n.Else)
 
-	case *ast.LoopStmt:
+	case *ast.WhileStmt:
 		return a.blockAllPathsReturn(n.Body)
 
 	case *ast.BadStmt:
