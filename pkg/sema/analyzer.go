@@ -660,6 +660,15 @@ func (a *Analyzer) visitStatement(stmt ast.Stmt) {
 		a.pushScope()
 		defer a.popScope()
 
+		if n.Condition == nil {
+			a.errorf(n, "while statement must have a condition")
+		} else {
+			cond := a.inferExprType(n.Condition)
+			if cond != nil && !cond.IsBool() {
+				a.errorf(n.Condition, "while condition must be bool, got %s", cond.Name)
+			}
+		}
+
 		for _, stmt := range n.Body {
 			a.visitStatement(stmt)
 		}
