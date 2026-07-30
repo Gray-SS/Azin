@@ -15,6 +15,8 @@ type ErrorReporter interface {
 const (
 	_ int = iota
 	PrecLowest
+	PrecLogicalOr  // ||
+	PrecLogicalAnd // &&
 	PrecBitwiseAnd // &
 	PrecEquality   // ==, !=
 	PrecComparison // <, >, <=, >=
@@ -244,6 +246,11 @@ func getPrecedence(kind token2.Kind) int {
 		return PrecEquality
 	case token2.Ampersand:
 		return PrecBitwiseAnd
+	case token2.LogicalAnd:
+		return PrecLogicalAnd
+	case token2.LogicalOr:
+		return PrecLogicalOr
+
 	default:
 		return PrecLowest
 	}
